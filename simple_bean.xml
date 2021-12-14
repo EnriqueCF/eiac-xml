@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ProcesosEIAC
+	xsi:schemaLocation="http://www.tirea.es/EIAC/ProcesosEIAC ProcesosEIAC_V06.xsd"
+	xmlns="http://www.tirea.es/EIAC/ProcesosEIAC"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Cabecera>
+		<FechaCreacion>2021-12-13T13:03:36.159</FechaCreacion>
+		<Version>6.0</Version>
+		<Emisor>
+			<CodigoInterno>EA01</CodigoInterno>
+			<CodigoDGS>C0001</CodigoDGS>
+		</Emisor>
+		<Receptor>
+			<CodigoInterno>ME01</CodigoInterno>
+			<CodigoDGS>J0001</CodigoDGS>
+		</Receptor>
+		<DatosProcesos>
+			<DetalleProcesos>
+				<DetalleProceso>
+					<ClasePoliza>NP</ClasePoliza>
+					<Transaccion>OR</Transaccion>
+					<Periodo>TR</Periodo>
+					<FechaDesde>2021-12-13T13:03:36.164</FechaDesde>
+					<FechaHasta>2021-12-13T13:03:36.164</FechaHasta>
+				</DetalleProceso>
+			</DetalleProcesos>
+		</DatosProcesos>
+	</Cabecera>
+	<Poliza>
+		<DetalleProceso>
+			<ClasePoliza>NP</ClasePoliza>
+			<Transaccion>OR</Transaccion>
+			<Periodo>TR</Periodo>
+			<FechaDesde>2021-12-13T13:03:36.164</FechaDesde>
+			<FechaHasta>2021-12-13T13:03:36.164</FechaHasta>
+		</DetalleProceso>
+		<DatosPoliza>
+			<IdPoliza>P01</IdPoliza>
+			<CodigoEntidad>
+				<CodigoInterno>EA01</CodigoInterno>
+				<CodigoDGS>C0001</CodigoDGS>
+			</CodigoEntidad>
+			<DatosMediador>
+				<IdMediador>
+					<CodigoInterno>ME01</CodigoInterno>
+					<CodigoDGS>J0001</CodigoDGS>
+				</IdMediador>
+			</DatosMediador>
+		</DatosPoliza>
+		<SituacionPoliza>EV</SituacionPoliza>
+		<ClasePoliza>NP</ClasePoliza>
+		<Fechas>
+			<FechaSituacion>2021-12-13T13:03:36.167</FechaSituacion>
+			<FechaEfectoInicial>2021-12-13T13:03:36.167</FechaEfectoInicial>
+			<FechaEfectoActual>2021-12-13T13:03:36.167</FechaEfectoActual>
+			<FechaVencimiento>2021-12-13T13:03:36.167</FechaVencimiento>
+			<FechaFinSeguro>2021-12-13T13:03:36.167</FechaFinSeguro>
+			<FechaSolicitud>2021-12-13T13:03:36.167</FechaSolicitud>
+			<FechaEmision>2021-12-13T13:03:36.167</FechaEmision>
+		</Fechas>
+		<DuracionPoliza>RE</DuracionPoliza>
+		<DatosRiesgos />
+		<GestionCobro />
+		<Tomador>
+			<TipoIdentificacion>NI</TipoIdentificacion>
+			<IdPersona>B00000001</IdPersona>
+			<RazonSocial>Razón Social</RazonSocial>
+		</Tomador>
+		<Asegurado />
+	</Poliza>
+</ProcesosEIAC>
