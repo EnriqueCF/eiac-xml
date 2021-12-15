@@ -1,20 +1,18 @@
 package com.example.restservicecors.xml.common;
 
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import javax.xml.bind.annotation.XmlElement;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public final class Codes {
-	@JacksonXmlProperty(localName = "CodigoInterno")
+    @XmlElement(name="CodigoInterno")
 	private String internalCode;
 	
-	@JacksonXmlProperty(localName = "CodigoDGS")
+    @XmlElement(name="CodigoDGS")
 	private String dgsCode;
 }

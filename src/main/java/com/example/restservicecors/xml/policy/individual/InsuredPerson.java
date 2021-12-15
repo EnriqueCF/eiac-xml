@@ -1,16 +1,20 @@
 package com.example.restservicecors.xml.policy.individual;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElementRef;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import com.example.restservicecors.xml.person.Person;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class InsuredPerson {
+	@XmlElementRef
 	private Person person;
 }

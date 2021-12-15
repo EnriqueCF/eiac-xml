@@ -2,33 +2,34 @@ package com.example.restservicecors.xml.person;
 
 import java.time.LocalDateTime;
 
-import com.example.restservicecors.xml.person.common.Address;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import com.example.restservicecors.xml.person.common.Address;
+
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
+@XmlRootElement(name = "PersonaFisica")
+@XmlType(name = "PersonaFisica")
 public class PhysicalPerson extends Person {
 
-	@JacksonXmlProperty(localName = "Nombre")
+	@XmlElement(name = "Nombre")
 	private String name;
-	
-	@JacksonXmlProperty(localName = "Apellido1")
+
+	@XmlElement(name = "Apellido1")
 	private String firstSurname;
-	
-	@JacksonXmlProperty(localName = "Sexo")
+
+	@XmlElement(name = "Sexo")
 	private String gender;
-	
-	@JacksonXmlProperty(localName = "Domicilio")
+
+	@XmlElement(name = "Domicilio")
 	private Address address;
-	
-	@JacksonXmlProperty(localName = "FechaNacimiento")
+
+	@XmlElement(name = "FechaNacimiento")
 	private LocalDateTime birthday;
 
 }

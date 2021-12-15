@@ -2,26 +2,28 @@ package com.example.restservicecors.xml.policy;
 
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import com.example.restservicecors.xml.policy.individual.InsuredPerson;
 import com.example.restservicecors.xml.policy.individual.Origin;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
+@XmlRootElement(name = "Poliza")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class IndividualPolicy extends Policy {
 
-	@JacksonXmlProperty(localName = "Asegurado")
-	private InsuredPerson insured;
+	@XmlElement(name = "Asegurado")
+	private InsuredPerson insuredPerson;
 
-	@JacksonXmlElementWrapper(localName = "OrigenesContratacion")
-	@JacksonXmlProperty(localName = "OrigenContratacion")
+	@XmlElementWrapper(name = "OrigenesContratacion")
+	@XmlElement(name = "OrigenContratacion")
 	private List<Origin> origins;
 }

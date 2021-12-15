@@ -1,16 +1,20 @@
 package com.example.restservicecors.xml.policy.common;
 
-import com.example.restservicecors.xml.person.JuridicPerson;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElementRef;
+import javax.xml.bind.annotation.XmlRootElement;
 
-import lombok.Getter;
+import com.example.restservicecors.xml.person.Person;
+
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
 @Setter
 @NoArgsConstructor
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class PolicyHolder {
-	@JacksonXmlProperty(localName = "PersonaJuridica")
-	private JuridicPerson juridicPerson;
+	@XmlElementRef
+	private Person person;
 }

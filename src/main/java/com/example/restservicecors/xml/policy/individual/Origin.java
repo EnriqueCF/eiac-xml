@@ -1,23 +1,21 @@
 package com.example.restservicecors.xml.policy.individual;
 
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import javax.xml.bind.annotation.XmlElement;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Origin {
-	@JacksonXmlProperty(localName = "PersonaJuridica")
+	@XmlElement(name = "PersonaJuridica")
 	private Integer orderNumber;
-	
-	@JacksonXmlProperty(localName = "PersonaJuridica")
+
+	@XmlElement(name = "PersonaJuridica")
 	private String hiringClass;
-	
-	@JacksonXmlProperty(localName = "PersonaJuridica")
+
+	@XmlElement(name = "PersonaJuridica")
 	private String centerCode;
 }

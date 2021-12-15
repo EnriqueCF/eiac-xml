@@ -1,19 +1,17 @@
 package com.example.restservicecors.xml.person;
 
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
-@JacksonXmlRootElement(localName = "ProcesosEIAC")
+@XmlRootElement(name = "PersonaJuridica")
+@XmlType(name = "PersonaJuridica")
 public class JuridicPerson extends Person {
-	@JacksonXmlProperty(localName = "RazonSocial")
+	@XmlElement(name = "RazonSocial")
 	private String comercialName;
 }

@@ -2,27 +2,31 @@ package com.example.restservicecors.xml.common.header;
 
 import java.time.LocalDateTime;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
 import com.example.restservicecors.xml.common.Codes;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.example.restservicecors.xml.config.LocalDateTimeAdapter;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@XmlRootElement
 public final class Header {
-	@JacksonXmlProperty(localName = "FechaCreacion")
+	@XmlElement(name = "Fecha creacion")
+	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
 	private LocalDateTime createdDate;
-	@JacksonXmlProperty(localName = "Version")
+	@XmlElement(name = "Version")
 	private double version;
-	@JacksonXmlProperty(localName = "Emisor")
+	@XmlElement(name = "Emisor")
 	private Codes sender;
-	@JacksonXmlProperty(localName = "Receptor")
+	@XmlElement(name = "Receptor")
 	private Codes receiver;
-	@JacksonXmlProperty(localName = "DatosProcesos")
+	@XmlElement(name = "DatosProcesos")
 	private ProcessData data;
 }

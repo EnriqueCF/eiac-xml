@@ -1,35 +1,33 @@
 package com.example.restservicecors.xml.person.common;
 
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import javax.xml.bind.annotation.XmlElement;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public final class Address {
-	@JacksonXmlProperty(localName = "NombreVia")
+	@XmlElement(name = "NombreVia")
 	private String nameRoad;
 
-	@JacksonXmlProperty(localName = "CodigoPostal")
+	@XmlElement(name = "CodigoPostal")
 	private Integer zipCode;
 
-	@JacksonXmlProperty(localName = "Poblacion")
+	@XmlElement(name = "Poblacion")
 	private String population;
 
-	@JacksonXmlProperty(localName = "Provincia")
+	@XmlElement(name = "Provincia")
 	private Integer province;
 
-	@JacksonXmlProperty(localName = "ClaseVia")
+	@XmlElement(name = "ClaseVia")
 	private String classRoad;
 
-	@JacksonXmlProperty(localName = "OtrosDatosVia")
+	@XmlElement(name = "OtrosDatosVia")
 	private String otherData;
 
-	@JacksonXmlProperty(localName = "Pais")
+	@XmlElement(name = "Pais")
 	private String country;
 }

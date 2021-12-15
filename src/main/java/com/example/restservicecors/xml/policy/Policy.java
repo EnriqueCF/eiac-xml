@@ -1,45 +1,46 @@
 package com.example.restservicecors.xml.policy;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import com.example.restservicecors.xml.common.ProcessDetail;
-import com.example.restservicecors.xml.person.Person;
 import com.example.restservicecors.xml.policy.common.Dates;
 import com.example.restservicecors.xml.policy.common.PaymentManagment;
 import com.example.restservicecors.xml.policy.common.PolicyData;
+import com.example.restservicecors.xml.policy.common.PolicyHolder;
 import com.example.restservicecors.xml.policy.common.RiskData;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
 @Setter
 @NoArgsConstructor
+@XmlRootElement
 public class Policy {
-	@JacksonXmlProperty(localName = "DetalleProceso")
+	@XmlElement(name = "DetalleProceso")
 	private ProcessDetail processDetail;
-	
-	@JacksonXmlProperty(localName = "DatosPoliza")
+
+	@XmlElement(name = "DatosPoliza")
 	private PolicyData policyData;
-	
-	@JacksonXmlProperty(localName = "SituacionPoliza")
+
+	@XmlElement(name = "SituacionPoliza")
 	private String status;
-	
-	@JacksonXmlProperty(localName = "ClasePoliza")
+
+	@XmlElement(name = "ClasePoliza")
 	private String policyClass;
-	
-	@JacksonXmlProperty(localName = "Fechas")
+
+	@XmlElement(name = "Fechas")
 	private Dates dates;
-	
-	@JacksonXmlProperty(localName = "DuracionPoliza")
+
+	@XmlElement(name = "DuracionPoliza")
 	private String duration;
-	
-	@JacksonXmlProperty(localName = "DatosRiesgos")
+
+	@XmlElement(name = "DatosRiesgos")
 	private RiskData riskData;
-	
-	@JacksonXmlProperty(localName = "GestionCobro")
+
+	@XmlElement(name = "GestionCobro")
 	private PaymentManagment paymentManagment;
-	
-	@JacksonXmlProperty( localName = "Tomador")
-	private Person policyHolder;
+
+	@XmlElement(name = "Tomador")
+	private PolicyHolder policyHolder;
 }

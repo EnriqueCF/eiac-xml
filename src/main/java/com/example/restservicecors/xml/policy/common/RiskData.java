@@ -2,18 +2,16 @@ package com.example.restservicecors.xml.policy.common;
 
 import java.util.List;
 
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import javax.xml.bind.annotation.XmlElement;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class RiskData {
-	@JacksonXmlProperty(localName = "Riesgo")
+	@XmlElement(name = "Riesgo")
 	private List<Risk> risks;
 }

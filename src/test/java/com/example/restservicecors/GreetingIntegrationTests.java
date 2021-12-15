@@ -2,11 +2,14 @@ package com.example.restservicecors;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,13 +26,7 @@ import com.example.restservicecors.xml.policy.IndividualPolicy;
 import com.example.restservicecors.xml.policy.common.Dates;
 import com.example.restservicecors.xml.policy.common.PolicyData;
 import com.example.restservicecors.xml.policy.common.PolicyHolder;
-import com.fasterxml.jackson.databind.MapperFeature;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import com.fasterxml.jackson.dataformat.xml.ser.ToXmlGenerator;
-import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
+import com.example.restservicecors.xml.policy.individual.InsuredPerson;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -38,7 +35,7 @@ import lombok.extern.slf4j.Slf4j;
 public class GreetingIntegrationTests {
 
 	@Test
-	public void whenJavaSerializedToXmlFile_thenCorrect() throws IOException {
+	public void whenJavaSerializedToXmlFile_thenCorrect() throws IOException, JAXBException {
 		log.info("{}", LocalDateTime.now());
 		ProcessesEiacPolicy procesosEiac = new ProcessesEiacPolicy();
 
@@ -56,7 +53,7 @@ public class GreetingIntegrationTests {
 		header.setReceiver(receptor);
 		header.setVersion(6.0);
 		// Objetos
-		
+
 		ProcessData datosProcesos = new ProcessData();
 		List<ProcessDetail> details = new ArrayList<>();
 		// Detalle proceso
@@ -70,27 +67,29 @@ public class GreetingIntegrationTests {
 		datosProcesos.setDetails(details);
 		header.setData(datosProcesos);
 		procesosEiac.setHeader(header);
-		
-		procesosEiac.setPolicy(buildIndividualPolicy());
-		// Configuración
-		
-		XmlMapper xmlMapper = new XmlMapper();
-		xmlMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-		xmlMapper.configure(ToXmlGenerator.Feature.WRITE_XML_DECLARATION, true);
-		xmlMapper.configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, false);
-		xmlMapper.registerModule(new ParameterNamesModule());
-		xmlMapper.registerModule(new Jdk8Module());
-		xmlMapper.registerModule(new JavaTimeModule());
-		
-		
-		xmlMapper.writeValue(new File("simple_bean.xml"), procesosEiac);
-		File file = new File("simple_bean.xml");
+//		
+		procesosEiac.setIndividualPolicy(buildIndividualPolicy());
 
+		// Configuración
+
+//		XmlMapper xmlMapper = new XmlMapper();
+//		xmlMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+//		xmlMapper.configure(ToXmlGenerator.Feature.WRITE_XML_DECLARATION, true);
+//		xmlMapper.configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, false);
+//		xmlMapper.registerModule(new ParameterNamesModule());
+//		xmlMapper.registerModule(new Jdk8Module());
+//		xmlMapper.registerModule(new JavaTimeModule());
+
+//		xmlMapper.writeValue(new File("simple_bean.xml"), procesosEiac);
+//		File file = new File("simple_bean.xml");
+		JAXBContext jaxbContext = JAXBContext.newInstance(ProcessesEiacPolicy.class);
+		Marshaller marshaller = jaxbContext.createMarshaller();
+		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+		marshaller.marshal(procesosEiac, System.out);
 		log.info("{}", LocalDateTime.now());
-		assertNotNull(file);
+		assertNotNull(procesosEiac);
 	}
-	
-	
+
 	private IndividualPolicy buildIndividualPolicy() {
 		// Poliza
 		IndividualPolicy policy = new IndividualPolicy();
@@ -116,11 +115,11 @@ public class GreetingIntegrationTests {
 		Codes entityCode = new Codes();
 		entityCode.setDgsCode("C0001");
 		entityCode.setInternalCode("EA01");
-		
+
 		datosPoliza.setEntityCode(entityCode);
 		datosPoliza.setMediatorsData(mediatosCodes);
 		policy.setPolicyData(datosPoliza);
-		
+
 		// Fechas
 		Dates fechas = new Dates();
 		fechas.setSituation(LocalDateTime.now());
@@ -131,7 +130,7 @@ public class GreetingIntegrationTests {
 		fechas.setExpiration(LocalDateTime.now());
 		fechas.setInitial(LocalDateTime.now());
 		fechas.setIssue(LocalDateTime.now());
-		
+
 		policy.setDates(fechas);
 		policy.setDuration("RE");
 		JuridicPerson personaJuridica = new JuridicPerson();
@@ -139,9 +138,9 @@ public class GreetingIntegrationTests {
 		personaJuridica.setPersonalId("B00000001");
 		personaJuridica.setTypeIdentification("NI");
 		PolicyHolder tomador = new PolicyHolder();
-		tomador.setJuridicPerson(personaJuridica);
-		policy.setPolicyHolder(personaJuridica);
-		
+		tomador.setPerson(personaJuridica);
+		policy.setPolicyHolder(tomador);
+
 		PhysicalPerson person = new PhysicalPerson();
 		person.setTypeIdentification("OT");
 		person.setPersonalId("P00000001A");
@@ -157,7 +156,9 @@ public class GreetingIntegrationTests {
 		address.setOtherData("Número 1");
 		address.setCountry("ESP");
 		person.setAddress(address);
-//		policy.setInsured(person);
+		InsuredPerson insured = new InsuredPerson();
+		insured.setPerson(person);
+		policy.setInsuredPerson(insured);
 		return policy;
 	}
 }

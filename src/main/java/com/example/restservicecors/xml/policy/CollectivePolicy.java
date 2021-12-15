@@ -1,8 +1,9 @@
 package com.example.restservicecors.xml.policy;
 
+import javax.xml.bind.annotation.XmlElement;
+
 import com.example.restservicecors.xml.policy.colective.CollectiveData;
 import com.example.restservicecors.xml.policy.colective.ProfitShare;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,11 +14,11 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CollectivePolicy extends Policy{
+public class CollectivePolicy extends Policy {
 
-	@JacksonXmlProperty(localName = "ParticipacionBeneficios")
+	@XmlElement(name = "ParticipacionBeneficios")
 	private CollectiveData collectivePolicyData;
-	
-	@JacksonXmlProperty(localName = "DatosPolizaColectiva")
+
+	@XmlElement(name = "DatosPolizaColectiva")
 	private ProfitShare profitShare;
 }

@@ -2,30 +2,33 @@ package com.example.restservicecors.xml.common;
 
 import java.time.LocalDateTime;
 
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import com.example.restservicecors.xml.config.LocalDateTimeAdapter;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProcessDetail {
-	@JacksonXmlProperty(localName = "ClasePoliza")
+	@XmlElement(name = "ClasePoliza")
 	private String policyClass;
-	
-	@JacksonXmlProperty(localName = "Transaccion")
+
+	@XmlElement(name = "Transaccion")
 	private String transaction;
-	
-	@JacksonXmlProperty(localName = "Periodo")
+
+	@XmlElement(name = "Periodo")
 	private String period;
-	
-	@JacksonXmlProperty(localName = "FechaDesde")
+
+	@XmlElement(name = "FechaDesde")
+	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
 	private LocalDateTime from;
-	
-	@JacksonXmlProperty(localName = "FechaHasta")
+
+	@XmlElement(name = "FechaHasta")
+	@XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
 	private LocalDateTime to;
 }
